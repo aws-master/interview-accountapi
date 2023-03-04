@@ -1,6 +1,14 @@
 version: '3'
 
 services:
+  form3:
+    image: golang:1.18
+    volumes:
+      - .:/app/form3
+    working_dir: /app/form3
+    command: go test -v ./...
+    depends_on:
+      - accountapi
   accountapi:
     image: form3tech/interview-accountapi:v1.0.0-46-gb3b6c766
     restart: on-failure
@@ -20,7 +28,7 @@ services:
       - DATABASE-USERNAME=interview_accountapi_user
       - DATABASE-PASSWORD=123
     ports:
-      - 8080:8080
+      - 8030:8080
   postgresql:
     image: postgres:9.5-alpine
     healthcheck:
@@ -34,6 +42,8 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - ./scripts/db:/docker-entrypoint-initdb.d/
+    ports:
+      - 3321:5432
 
   vault:
     image: vault:1.6.3

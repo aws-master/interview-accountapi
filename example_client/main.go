@@ -1,18 +1,13 @@
-# How to run
+package main
 
-```docker-compose up```
+import (
+	"fmt"
+	"log"
 
-list non standard library :
-- `github.com/google/uuid` for generate UUID
-- `github.com/stretchr/testify` used for create unit test
-- `github.com/vektra/mockery/v2@v2.20.0` mockery used for mocking the interface
+	"github.com/aws-master/form3"
+	"github.com/aws-master/form3/models"
+)
 
-refer to `example_client` folder, to show how to use this SDK/library. ```docker-compose up``` up will also run the test and alternatevely tou can run ```test -v``` in the main directory. 
-
-
-## Usage
-
-```golang 
 func main() {
 	var (
 		version int64
@@ -52,4 +47,3 @@ func main() {
 	}
 	fmt.Printf("delete request client error  %+v \n", err)
 }
-```
